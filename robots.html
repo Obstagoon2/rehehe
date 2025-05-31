@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Team 1912 Combustion - Our Competition Robots Through the Years">
     <meta name="theme-color" content="#2498DC">
+    <link rel="shortcut icon" href="assets/frc1912.ico">
     <title>Our Robots - Team 1912</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/robots.css">
+    <link rel="stylesheet" href="css/animations.css">
     <script src="https://unpkg.com/scrollreveal@4.1.0/dist/scrollreveal.min.js" defer></script>
     <script src="js/main.js" defer></script>
 </head>
@@ -15,23 +17,27 @@
     <header>
         <div class="header-content">
             <div class="logo-container">
-                <img src="assets/static/1912Horizontal.png" alt="Team 1912 Logo" class="main-logo" width="450" height="95">
+                <img src="assets/static/1912Horizontal.png" alt="Team 1912 Logo" class="main-logo">
             </div>
             <nav class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="team.html">Team</a>
-                <a href="robots.html" class="active" aria-current="page">Robots</a>
-                <a href="contact.html">Contact</a>
+                <a href="index.html" style="color: var(--primary-blue);">HOME</a>
+                <a href="about.html" style="color: var(--primary-blue);">ABOUT</a>
+                <a href="team.html" style="color: var(--primary-blue);">TEAM</a>
+                <a href="robots.html" class="active" aria-current="page" style="color: var(--primary-orange);">ROBOTS</a>
+                <a href="sponsors.html" style="color: var(--primary-blue);">SPONSORS</a>
+                <a href="contact.html" style="color: var(--primary-blue);">CONTACT</a>
             </nav>
         </div>
     </header>
 
-    <main class="page-content">
+    <main>
         <section class="robots-history">
-            <h1 class="section-title">Our Competition Robots</h1>
-            <p class="section-description">Explore our team's robots throughout the years, each representing countless hours of innovation, dedication, and engineering excellence.</p>
-            
+            <h1 class="section-title">Our Robots</h1>
+            <p class="section-description">
+                Since 2006, Team 1912 has designed and built innovative robots to compete in the FIRST Robotics Competition.
+                Each robot represents countless hours of dedication, engineering excellence, and the collaborative spirit of our team.
+            </p>
+
             <div class="robot-grid">
                 <!-- 2025 -->
                 <article class="robot-card">
@@ -304,6 +310,7 @@
                         <h2>Pyro (2007)</h2>
                         <h3>Game: Rack "N" Roll</h3>
                         <div class="specs">
+                            <h4>History</h4>
                             <p>Competed under the name "Nuts & Volts" with traditional blue and orange colors.</p>
                         </div>
                     </div>
@@ -318,6 +325,7 @@
                         <h2>Nutcracker (2006)</h2>
                         <h3>Game: Aim High</h3>
                         <div class="specs">
+                            <h4>History</h4>
                             <p>First robot build; team was called the Northshore Krewe and had different team colors before adopting the current blue and orange scheme.</p>
                         </div>
                     </div>
@@ -325,10 +333,10 @@
             </div>
         </section>
     </main>
-
+    <script src="js/robots.js"></script>
     <footer>
-        <img src="assets/static/1912.png" alt="Team 1912 Logo" class="footer-logo" width="60" height="60" loading="lazy">
-        <p>&copy; 2025 Team 1912 Combustion. All rights reserved.</p>
+        <img src="assets/static/1912.png" alt="Team 1912 Logo" class="footer-logo">
+        <p>&copy; 2025 FIRST Robotics Team 1912 - Combustion. All rights reserved.</p>
     </footer>
 </body>
 </html> 
