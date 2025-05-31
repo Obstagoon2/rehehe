@@ -1,0 +1,622 @@
+@font-face {
+    font-family: 'Nasalization';
+    src: url('../assets/fonts/Nasalization Rg.otf') format('opentype');
+    font-display: swap; /* Show fallback font while loading */
+}
+
+:root {
+    --primary-blue: #2498DC;
+    --secondary-blue: #1C7AB1;
+    --primary-orange: #FF8300;
+    --secondary-orange: #FF9C33;
+    --accent-yellow: #FEF400;
+    --light-gray: #B5B5B5;
+    --dark-gray: #9C9C9C;
+    --white: #ffffff;
+    --black: #1a1a1a;
+    --header-height: 110px;
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Nasalization', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--black);
+    background-color: var(--white);
+    min-height: 100vh;
+}
+
+/* Common styles */
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--primary-blue);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--primary-orange);
+    margin: 1rem auto;
+    border-radius: 2px;
+}
+
+/* Layout components */
+section {
+    padding: 5rem 2rem;
+}
+
+.page-content {
+    margin-top: var(--header-height);
+    min-height: calc(100vh - var(--header-height) - 100px);
+    padding: 2rem;
+    background: var(--white);
+}
+
+/* Header and Navigation */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: var(--white);
+    z-index: 1000;
+    height: var(--header-height);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+
+.header-content {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.logo-container {
+    height: calc(var(--header-height) - 15px);
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 2rem;
+}
+
+.main-logo {
+    height: 100%;
+    width: auto;
+    max-width: 450px;
+    object-fit: contain;
+}
+
+/* Navigation Links */
+.nav-links {
+    width: 100%;
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    font-size: 1.3rem;
+}
+
+.nav-links a {
+    color: var(--secondary-blue);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+    font-weight: 600;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    font-family: 'Nasalization', sans-serif;
+    white-space: nowrap;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-orange);
+    transition: width var(--transition-speed) ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.nav-links a.active {
+    color: var(--primary-orange);
+}
+
+/* Hero Section */
+.hero {
+    margin-top: var(--header-height);
+    min-height: calc(100vh - var(--header-height));
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    overflow: hidden;
+    padding: 2rem;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    width: 100%;
+}
+
+.hero-logo {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 3rem;
+    opacity: 0;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    color: var(--white);
+    opacity: 0;
+    font-family: 'Nasalization', 'Arial Black', sans-serif;
+}
+
+.hero p {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: var(--accent-yellow);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    opacity: 0;
+    font-family: 'Nasalization', Arial, sans-serif;
+}
+
+/* Logo Styles */
+.footer-logo {
+    height: 60px;
+    width: auto;
+    margin-bottom: 0.5rem;
+}
+
+/* About Section */
+.about {
+    background: linear-gradient(45deg, var(--light-gray), var(--white));
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* About Features */
+.about-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+}
+
+.feature h3 {
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+/* Team Section */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+/* Team Categories */
+.team-category {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.team-category:hover {
+    transform: translateY(-5px);
+}
+
+.team-category h3 {
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+}
+
+/* Robots Section */
+.robot-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.robot-card {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.robot-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Contact Section */
+.contact {
+    background: #1a1a1a;
+    color: var(--white);
+    padding: 4rem 2rem;
+    position: relative;
+}
+
+.contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, 
+        rgba(255,131,0,0.2), 
+        rgba(255,255,255,0.2) 50%, 
+        rgba(255,131,0,0.2)
+    );
+}
+
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title.light {
+    color: var(--white);
+}
+
+.contact-content {
+    display: flex;
+    justify-content: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact-form {
+    width: 100%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--white);
+    font-size: 1rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--white);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-orange);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.submit-button {
+    background: linear-gradient(to right, var(--primary-blue), var(--secondary-blue));
+    color: var(--white);
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.submit-button:hover {
+    background: linear-gradient(to right, var(--secondary-blue), var(--primary-blue));
+    transform: translateY(-2px);
+}
+
+/* Robot Cards */
+.robot-card {
+    text-align: center;
+    padding: 2rem;
+}
+
+.robot-logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.robot-card h3 {
+    color: var(--primary-blue);
+    margin-bottom: 0.5rem;
+}
+
+/* Footer */
+footer {
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+    padding: 1rem;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-logo {
+    height: 60px;
+    width: auto;
+    margin-bottom: 0.25rem;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    :root {
+        --header-height: 80px;
+    }
+
+    .nav-links {
+        display: none; /* Will need hamburger menu implementation */
+    }
+    
+    section {
+        padding: 3rem 1rem;
+    }
+    
+    .hero-logo {
+        max-width: 300px;
+    }
+    
+    .about-features,
+    .team-grid,
+    .robot-showcase,
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1rem;
+    }
+    
+    .contact-form {
+        padding: 1.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 16px;
+    }
+}
+
+/* Style adjustments for section pages */
+.about-section,
+.team-section,
+.robots-section,
+.contact-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Sponsor Section Styles */
+.sponsors {
+    padding: 4rem 2rem;
+    background: linear-gradient(to bottom, #1a1a1a, #242424);
+    color: white;
+    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sponsors::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, 
+        rgba(255,131,0,0.2), 
+        rgba(255,255,255,0.2) 50%, 
+        rgba(255,131,0,0.2)
+    );
+}
+
+.sponsor-tier {
+    margin-bottom: 1.5rem;
+}
+
+.sponsor-tier h3 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: white;
+    font-size: 2.5rem;
+    font-family: 'Nasalization', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.sponsor-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0.5rem;
+}
+
+.sponsor-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.sponsor-logo:hover {
+    transform: translateY(-5px);
+}
+
+.sponsor-logo.large {
+    width: 350px;
+}
+
+.sponsor-logo.medium {
+    width: 300px;
+}
+
+/* Special override for DoDSTEM logo */
+.sponsor-logo.medium img[alt="DoD STEM"] {
+    width: 140%;
+    margin: -20% -20%;
+}
+
+.sponsor-logo.small {
+    width: 250px;
+}
+
+.sponsor-logo img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.sponsor-text {
+    text-align: center;
+    padding: 0.5rem;
+    color: white;
+}
+
+.sponsor-text p {
+    margin: 0.5rem 0;
+    color: #cccccc;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sponsor-logo.large {
+        width: 300px;
+    }
+
+    .sponsor-logo.medium {
+        width: 250px;
+    }
+
+    .sponsor-logo.small {
+        width: 200px;
+    }
+
+    .sponsor-tier h3 {
+        font-size: 2rem;
+    }
+}
+
+/* Remove the tier-specific colors since we're using white text on dark background */
+.inferno h3,
+.wildfire h3,
+.bonfire h3,
+.torch h3,
+.candlelight h3 {
+    color: white;
+} 
