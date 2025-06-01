@@ -8,8 +8,7 @@
     <link rel="shortcut icon" href="assets/frc1912.ico">
     <title>Contact - Team 1912 Combustion</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/animations.css">
-    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://unpkg.com/scrollreveal@4.1.0/dist/scrollreveal.min.js" defer></script>
 </head>
 <body>
     <header>
@@ -18,61 +17,85 @@
                 <img src="assets/static/1912Horizontal.png" alt="Team 1912 Logo" class="main-logo">
             </div>
             <nav class="nav-links">
-                <a href="index.html" style="color: var(--primary-blue);">HOME</a>
-                <a href="about.html" style="color: var(--primary-blue);">ABOUT</a>
-                <a href="team.html" style="color: var(--primary-blue);">TEAM</a>
-                <a href="robots.html" style="color: var(--primary-blue);">ROBOTS</a>
-                <a href="sponsors.html" style="color: var(--primary-blue);">SPONSORS</a>
-                <a href="contact.html" class="active" aria-current="page" style="color: var(--primary-orange);">CONTACT</a>
+                <a href="index.html">HOME</a>
+                <a href="about.html">ABOUT</a>
+                <a href="outreach.html">OUTREACH</a>
+                <a href="robots.html">ROBOTS</a>
+                <a href="sponsors.html">SPONSORS</a>
+                <a href="contact.html" class="active" aria-current="page">CONTACT</a>
             </nav>
         </div>
     </header>
 
+    <div class="social-icons">
+        <a href="https://www.facebook.com/FRC1912" target="_blank" title="Facebook">
+            <img src="assets/websites/facebook.png" alt="Facebook">
+        </a>
+        <a href="https://www.instagram.com/frc1912" target="_blank" title="Instagram">
+            <img src="assets/websites/instagram.png" alt="Instagram">
+        </a>
+        <a href="https://www.youtube.com/team1912combustion" target="_blank" title="YouTube">
+            <img src="assets/websites/Youtube.png" alt="YouTube">
+        </a>
+        <a href="https://github.com/team1912combustion" target="_blank" title="GitHub">
+            <img src="assets/websites/github-logo.png" alt="GitHub">
+        </a>
+        <a href="https://www.thebluealliance.com/team/1912" target="_blank" title="The Blue Alliance">
+            <img src="assets/websites/thebluealliance.png" alt="The Blue Alliance">
+        </a>
+    </div>
+
     <main class="page-content">
-        <section class="contact-section">
-            <h1 class="section-title animate-on-scroll">Contact Us</h1>
-            <div class="contact-content">
-                <div class="contact-info animate-on-scroll">
-                    <h3>Get in Touch</h3>
-                    <p>Have questions about our team or interested in sponsorship opportunities? We'd love to hear from you!</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <h4>Email</h4>
-                            <p>team1912@gmail.com</p>
-                        </div>
-                        <div class="contact-item">
-                            <h4>Location</h4>
-                            <p>Northfield Mount Hermon School</p>
-                            <p>One Lamplighter Way</p>
-                            <p>Mount Hermon, MA 01354</p>
-                        </div>
-                        <div class="contact-item">
-                            <h4>Social Media</h4>
-                            <div class="social-links">
-                                <a href="#" target="_blank">Facebook</a>
-                                <a href="#" target="_blank">Twitter</a>
-                                <a href="#" target="_blank">Instagram</a>
+        <div class="page-header">
+            <h1>Contact Us</h1>
+            <p class="page-description">Have questions about our team? Want to get involved? We'd love to hear from you!</p>
+        </div>
+
+        <div class="section-content">
+            <section class="contact">
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <h4>Location</h4>
+                                <p>Northshore High School</p>
+                                <p>100 Panther Drive</p>
+                                <p>Slidell, LA 70461</p>
+                            </div>
+                            <div class="contact-item">
+                                <h4>Email</h4>
+                                <p>team1912combustion@gmail.com</p>
+                            </div>
+                            <div class="contact-item">
+                                <h4>Social Media</h4>
+                                <div class="social-links">
+                                    <a href="https://www.facebook.com/Team1912Combustion/" target="_blank">Facebook</a>
+                                    <a href="https://www.youtube.com/team1912combustion" target="_blank">Youtube</a>
+                                    <a href="https://www.instagram.com/teamcombustion/" target="_blank">Instagram</a>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Subject">
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Send Message</button>
+                    </form>
                 </div>
-                <form class="contact-form animate-on-scroll">
-                    <div class="form-group">
-                        <input type="text" placeholder="Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Email" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" placeholder="Subject" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Message" required></textarea>
-                    </div>
-                    <button type="submit">Send Message</button>
-                </form>
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
 
     <footer>

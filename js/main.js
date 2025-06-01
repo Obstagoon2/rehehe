@@ -1,41 +1,38 @@
-// Initialize ScrollReveal for scroll animations
+// Initialize ScrollReveal with optimized settings
 const sr = ScrollReveal({
     origin: 'bottom',
     distance: '50px',
-    duration: 1000,
-    delay: 200,
-    easing: 'cubic-bezier(0.5, 0, 0, 1)',
-    reset: false
+    duration: 800,
+    delay: 100,
+    easing: 'ease-out',
+    reset: false,
+    useDelay: 'once',
+    viewFactor: 0.2
 });
 
 // Apply animations to elements with animate-on-scroll class
 sr.reveal('.animate-on-scroll', {
-    interval: 200
+    interval: 100
 });
 
-// Function to reset hero animations
+// Function to reset hero animations with optimized performance
 function resetHeroAnimations() {
-    const heroLogo = document.querySelector('.hero-logo');
-    const heroTitle = document.querySelector('.hero h1');
-    const heroText = document.querySelector('.hero p');
+    const heroElements = {
+        logo: document.querySelector('.hero-logo'),
+        title: document.querySelector('.hero h1'),
+        text: document.querySelector('.hero p')
+    };
     
-    if (heroLogo) {
-        heroLogo.style.animation = 'none';
-        heroLogo.offsetHeight; // Trigger reflow
-        heroLogo.style.animation = 'heroLogoAnimation 1.2s ease-out 0.3s forwards';
-    }
-    
-    if (heroTitle) {
-        heroTitle.style.animation = 'none';
-        heroTitle.offsetHeight; // Trigger reflow
-        heroTitle.style.animation = 'heroTextAnimation 1.2s ease-out 0.6s forwards';
-    }
-    
-    if (heroText) {
-        heroText.style.animation = 'none';
-        heroText.offsetHeight; // Trigger reflow
-        heroText.style.animation = 'heroTextAnimation 1.2s ease-out 0.9s forwards';
-    }
+    // Batch DOM operations
+    requestAnimationFrame(() => {
+        for (const [key, element] of Object.entries(heroElements)) {
+            if (element) {
+                element.style.animation = 'none';
+                element.offsetHeight; // Single reflow
+                element.style.animation = `hero${key.charAt(0).toUpperCase() + key.slice(1)}Animation 1s ease-out ${key === 'logo' ? '0.2s' : key === 'title' ? '0.4s' : '0.6s'} forwards`;
+            }
+        }
+    });
 }
 
 // Reset animations when navigating back to the page
@@ -46,11 +43,9 @@ window.addEventListener('pageshow', (event) => {
 });
 
 // Reset animations when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-    resetHeroAnimations();
-});
+document.addEventListener('DOMContentLoaded', resetHeroAnimations);
 
-// Smooth scroll for navigation links
+// Smooth scroll with optimized performance
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -64,40 +59,37 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Add click handlers for navigation links to reset animations
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        if (link.getAttribute('href') === 'index.html') {
-            setTimeout(resetHeroAnimations, 100);
-        }
-    });
-});
-
-// Navbar scroll effect
+// Optimize scroll handlers using requestAnimationFrame
 const navbar = document.querySelector('.navbar');
 let lastScrollTop = 0;
+let ticking = false;
 
-window.addEventListener('scroll', () => {
+function updateNavbar() {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     
-    // Add/remove background color based on scroll position
+    // Use CSS classes instead of inline styles
     if (scrollTop > 50) {
-        navbar.style.backgroundColor = '#ffffff';
-        navbar.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+        navbar?.classList.add('scrolled');
     } else {
-        navbar.style.backgroundColor = 'transparent';
-        navbar.style.boxShadow = 'none';
+        navbar?.classList.remove('scrolled');
     }
     
-    // Hide/show navbar based on scroll direction
     if (scrollTop > lastScrollTop) {
-        navbar.style.transform = 'translateY(-100%)';
+        navbar?.classList.add('nav-hidden');
     } else {
-        navbar.style.transform = 'translateY(0)';
+        navbar?.classList.remove('nav-hidden');
     }
     
     lastScrollTop = scrollTop;
-});
+    ticking = false;
+}
+
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        requestAnimationFrame(updateNavbar);
+        ticking = true;
+    }
+}, { passive: true });
 
 // Parallax effect for hero section
 const hero = document.querySelector('.hero');

@@ -14,39 +14,31 @@ document.addEventListener('DOMContentLoaded', () => {
     modalOverlay.appendChild(modalContent);
     document.body.appendChild(modalOverlay);
 
-    // Wait for images to load before starting animations
-    const robotCards = document.querySelectorAll('.robot-card');
-    let loadedImages = 0;
-    const totalImages = robotCards.length;
+    // Set up Intersection Observer for animations
+    const observerOptions = {
+        root: null,
+        rootMargin: '50px',  // Start loading slightly before elements come into view
+        threshold: 0.15      // Trigger when 15% of the element is visible
+    };
 
-    function startAnimations() {
-        robotCards.forEach(card => {
-            requestAnimationFrame(() => {
-                card.classList.add('animate');
-            });
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                requestAnimationFrame(() => {
+                    entry.target.classList.add('animate');
+                });
+                observer.unobserve(entry.target); // Stop observing once animated
+            }
         });
-    }
+    }, observerOptions);
 
-    function handleImageLoad() {
-        loadedImages++;
-        if (loadedImages === totalImages) {
-            // All images are loaded, start animations
-            startAnimations();
-        }
-    }
-
-    // Check if images are already cached
-    robotCards.forEach(card => {
-        const img = card.querySelector('img');
-        if (img.complete) {
-            handleImageLoad();
-        } else {
-            img.addEventListener('load', handleImageLoad);
-        }
+    // Start observing all robot cards
+    document.querySelectorAll('.robot-card').forEach(card => {
+        observer.observe(card);
     });
     
     // Add click handlers to all robot cards
-    robotCards.forEach(card => {
+    document.querySelectorAll('.robot-card').forEach(card => {
         card.addEventListener('click', () => {
             const robotName = card.querySelector('h2').textContent;
             const robotGame = card.querySelector('h3').textContent;
