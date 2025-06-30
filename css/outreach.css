@@ -165,4 +165,172 @@
     .outreach-content h2 {
         font-size: 1.3rem;
     }
+}
+
+/* Calendar Section Styles */
+.calendar-section {
+    margin-top: 0;
+    padding: 2rem 0;
+    position: relative;
+    z-index: 1;
+}
+
+.calendar-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-family: 'Nasalization', sans-serif;
+    background: linear-gradient(90deg, #2498DC, #FF8300);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(36, 152, 220, 0.3);
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.calendar-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(90deg, #2498DC, #FF8300);
+    box-shadow: 0 0 10px rgba(36, 152, 220, 0.5);
+}
+
+.calendar-description {
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.calendar-container {
+    background: linear-gradient(135deg,
+        rgba(36, 152, 220, 0.05) 0%,
+        rgba(26, 26, 26, 0.9) 50%,
+        rgba(255, 131, 0, 0.05) 100%
+    );
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 
+        0 0 25px rgba(255, 131, 0, 0.1),
+        0 0 25px rgba(36, 152, 220, 0.1);
+    border: 1px solid;
+    border-image: linear-gradient(135deg, rgba(36, 152, 220, 0.3), rgba(255, 131, 0, 0.3)) 1;
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 900px;
+    transition: all 0.3s ease;
+}
+
+.calendar-container:hover {
+    box-shadow: 
+        0 0 35px rgba(255, 131, 0, 0.2),
+        0 0 35px rgba(36, 152, 220, 0.2);
+    transform: translateY(-2px);
+}
+
+.calendar-container iframe {
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.calendar-container iframe:hover {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive Calendar */
+@media (max-width: 900px) {
+    .calendar-container {
+        padding: 1rem;
+        margin: 0 1rem;
+    }
+    
+    .calendar-container iframe {
+        width: 100% !important;
+        height: 500px !important;
+    }
+    
+    .calendar-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .calendar-container iframe {
+        height: 400px !important;
+    }
+    
+    .calendar-title {
+        font-size: 1.8rem;
+    }
+    
+    .calendar-description {
+        font-size: 1rem;
+        margin: 0 1rem 2rem 1rem;
+    }
+}
+
+/* Outreach Photo Sections */
+.outreach-photo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2.5rem auto 2.5rem auto;
+    max-width: 900px;
+    background: linear-gradient(135deg, rgba(36,152,220,0.07) 0%, rgba(255,131,0,0.07) 100%);
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(36,152,220,0.08), 0 2px 8px rgba(255,131,0,0.08);
+    padding: 2rem 1rem 1.5rem 1rem;
+}
+
+.outreach-photo {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+    object-fit: cover;
+    margin-bottom: 1.2rem;
+}
+
+.outreach-photo-caption {
+    color: #fff;
+    font-size: 1.15rem;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+    font-family: 'Nasalization', sans-serif;
+    background: linear-gradient(90deg, #2498DC 0%, #FF8300 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(36,152,220,0.15);
+}
+
+@media (max-width: 900px) {
+    .outreach-photo-section {
+        max-width: 98vw;
+        padding: 1rem 0.5rem 1rem 0.5rem;
+    }
+    .outreach-photo {
+        max-width: 98vw;
+        height: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .outreach-photo-caption {
+        font-size: 1rem;
+        max-width: 95vw;
+    }
 } 
