@@ -96,10 +96,12 @@ window.addEventListener('scroll', () => {
 
 // Parallax effect for hero section
 const hero = document.querySelector('.hero');
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    hero.style.backgroundPositionY = `${scrolled * 0.5}px`;
-});
+if (hero) {
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        hero.style.backgroundPositionY = `${scrolled * 0.5}px`;
+    });
+}
 
 // Add loading animation when needed
 function showLoading(element) {
