@@ -1,19 +1,22 @@
-// Initialize ScrollReveal with optimized settings
-const sr = ScrollReveal({
-    origin: 'bottom',
-    distance: '50px',
-    duration: 800,
-    delay: 100,
-    easing: 'ease-out',
-    reset: false,
-    useDelay: 'once',
-    viewFactor: 0.2
-});
+// Initialize ScrollReveal with optimized settings (if available)
+let sr = null;
+if (typeof ScrollReveal !== 'undefined') {
+    sr = ScrollReveal({
+        origin: 'bottom',
+        distance: '50px',
+        duration: 800,
+        delay: 100,
+        easing: 'ease-out',
+        reset: false,
+        useDelay: 'once',
+        viewFactor: 0.2
+    });
 
-// Apply animations to elements with animate-on-scroll class
-sr.reveal('.animate-on-scroll', {
-    interval: 100
-});
+    // Apply animations to elements with animate-on-scroll class
+    sr.reveal('.animate-on-scroll', {
+        interval: 100
+    });
+}
 
 // Function to reset hero animations with optimized performance
 function resetHeroAnimations() {
@@ -125,4 +128,118 @@ function loadContent(section) {
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
     // Add any initialization code here
-}); 
+    
+    // Initialize CAPTCHA if on contact page
+    if (window.location.pathname.includes('contact.html') || 
+        window.location.href.includes('contact.html') ||
+        document.querySelector('.contact-form')) {
+        console.log('Contact page detected, initializing CAPTCHA...');
+        initCaptcha();
+    }
+});
+
+// Also try to initialize CAPTCHA when window loads (fallback)
+window.addEventListener('load', () => {
+    if (document.querySelector('.contact-form') && !document.getElementById('captcha-question').textContent) {
+        console.log('CAPTCHA not initialized, trying again on window load...');
+        initCaptcha();
+    }
+});
+
+// CAPTCHA functionality
+let captchaAnswer = null;
+
+function generateCaptcha() {
+    const num1 = Math.floor(Math.random() * 10) + 1;
+    const num2 = Math.floor(Math.random() * 10) + 1;
+    const operators = ['+', '-', '×'];
+    const operator = operators[Math.floor(Math.random() * operators.length)];
+    
+    let answer;
+    let question;
+    
+    switch (operator) {
+        case '+':
+            answer = num1 + num2;
+            question = `${num1} + ${num2}`;
+            break;
+        case '-':
+            answer = num1 - num2;
+            question = `${num1} - ${num2}`;
+            break;
+        case '×':
+            answer = num1 * num2;
+            question = `${num1} × ${num2}`;
+            break;
+    }
+    
+    return { question, answer };
+}
+
+function initCaptcha() {
+    const captchaQuestion = document.getElementById('captcha-question');
+    const captchaInput = document.getElementById('captcha');
+    const contactForm = document.querySelector('.contact-form');
+    
+    if (!captchaQuestion || !captchaInput || !contactForm) {
+        console.log('CAPTCHA elements not found, retrying...');
+        // Retry after a short delay in case DOM isn't ready
+        setTimeout(initCaptcha, 100);
+        return;
+    }
+    
+    console.log('Initializing CAPTCHA...');
+    
+    // Generate initial CAPTCHA
+    const { question, answer } = generateCaptcha();
+    captchaQuestion.textContent = question;
+    captchaAnswer = answer;
+    
+    console.log('CAPTCHA question:', question, 'Answer:', answer);
+    
+    // Add refresh CAPTCHA functionality
+    captchaQuestion.style.cursor = 'pointer';
+    captchaQuestion.title = 'Click to get a new question';
+    captchaQuestion.addEventListener('click', refreshCaptcha);
+    
+    // Handle form submission
+    contactForm.addEventListener('submit', handleFormSubmission);
+    
+    console.log('CAPTCHA initialized successfully');
+}
+
+function refreshCaptcha() {
+    const captchaQuestion = document.getElementById('captcha-question');
+    const captchaInput = document.getElementById('captcha');
+    
+    if (!captchaQuestion || !captchaInput) return;
+    
+    const { question, answer } = generateCaptcha();
+    captchaQuestion.textContent = question;
+    captchaAnswer = answer;
+    captchaInput.value = '';
+    captchaInput.focus();
+}
+
+function handleFormSubmission(event) {
+    event.preventDefault();
+    
+    const captchaInput = document.getElementById('captcha');
+    const userAnswer = parseInt(captchaInput.value);
+    
+    if (userAnswer !== captchaAnswer) {
+        alert('Incorrect answer. Please try again.');
+        captchaInput.value = '';
+        captchaInput.focus();
+        refreshCaptcha();
+        return;
+    }
+    
+    // If CAPTCHA is correct, you can proceed with form submission
+    // For now, we'll just show a success message
+    alert('Thank you for your message! We\'ll get back to you soon.');
+    
+    // Reset form
+    event.target.reset();
+    refreshCaptcha();
+} 
